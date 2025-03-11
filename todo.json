@@ -1,6 +1,10 @@
 [
     {
         "task": "kit and katt",
+        "done": true
+    },
+    {
+        "task": "Buy groceries",
         "done": false
     }
 ]

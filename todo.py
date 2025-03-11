@@ -37,7 +37,7 @@ def list():
         click.echo("No Task found")
         return
     for index, task in enumerate(tasks,1):
-        status = "dumb" if task['done'] else 'pending'
+        status = "done" if task['done'] else 'pending'
         click.echo(f"{index}.{task['task']} {status}")
     
 
@@ -56,26 +56,27 @@ def complete(task_number):
  
 
 
-# @click.command()
-# @click.argument("task_number",type=int)
-# def delete(task_number):
-#     """Delete the Task"""
-#     tasks= load_todo()
-#     if 0 < task_number <= len(tasks):
-#         delete_task = tasks.pop(task_number - 1)
-#         save_todo(delete_task)
-#         click.echo(f"Task {delete_task["task"]} deleted")
-#     else:
-#         click.echo(f"Invalide task number {task_number}")
+@click.command()
+@click.argument("task_number",type=int)
+def delete(task_number):
+    """Delete the Task"""
+    tasks= load_todo()
+    if 0 < task_number <= len(tasks):
+        delete_task = tasks.pop(task_number - 1)
+        save_todo(delete_task)
+        click.echo(f"Task {delete_task['task']} deleted")
+
+    else:
+        click.echo(f"Invalide task number {task_number}")
 
 
-.click.command()
+
 
 
 cli.add_command(add)
 cli.add_command(list)
 cli.add_command(complete)
-# cli.add_command(delete)
+cli.add_command(delete)
 
 if __name__ == "__main__":
     cli()
